@@ -226,11 +226,13 @@ $totalProdutos = 0; ?>
                                 <td>
                                     <?php if ($totalProdutos != 0 || $totalServico != 0) {
                                         if ($result->valor_desconto != 0) {
-                                            echo "<h4 style='text-align: right'>SUBTOTAL: R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
-                                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'>DESCONTO: R$ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
-                                            echo "<h4 style='text-align: right'>TOTAL: R$ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>";
+                                            echo "<h4 style='text-align: right'>SUBTOTAL(em até 12x sem juros*): R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
+                                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'>DESCONTO(5% à vista): R$ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
+                                            echo "<h4 id='total1' style='text-align: right'>TOTAL: R$ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>";
+                                            echo "<h4 style='text-align: right'>*sem juros nos cartões Master ou Visa</h4>";
+
                                         } else {
-                                            echo "<h4 id='total' style='text-align: right'>TOTAL: R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
+                                            echo "<h4 id='total2' style='text-align: right'>TOTAL: R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                         }
                                     } ?>
                                 </td>
@@ -327,21 +329,42 @@ $totalProdutos = 0; ?>
 <script>
     function abrirModal(idOs) {
         // Atualiza a mensagem do modal com os dados da OS
-        var totall = document.getElementById("total").textContent;
-        document.getElementById('mensagemConfirmacao').innerText = 
-            `Tem certeza de que deseja aprovar a Ordem de Serviço ${idOs} com o valor ${totall}?`;
+        var total1 = document.getElementById("total1");
+        var total2 = document.getElementById("total2");
+
+        var texto = null;
+
+        if (total1) {
+            texto = total1.textContent;
+        } else if (total2) {
+            texto = total2.textContent;
+        }
+
+        document.getElementById('mensagemConfirmacao').innerText =
+            `Tem certeza de que deseja aprovar a ordem de Serviço Nº ${idOs} com o valor de R$${extrairTotal(texto)} ?`;
         // Abre o modal de confirmação
         $('#modalConfirmacao').modal('show');
         document.getElementById('confirmarAprovacao').onclick = function() {
-                window.location.href = `<?php echo site_url('mine/aprovarOs/'); ?>` + idOs;
-            };
+            window.location.href = `<?php echo site_url('mine/aprovarOs/'); ?>` + idOs;
+        };
     }
+
     function fecharModal() {
         var modal = document.getElementById('modalConfirmacao');
         if (modal) {
             modal.style.display = 'none';
         } else {
             console.error("Modal de confirmação não encontrado na página.");
+        }
+    }
+
+    function extrairTotal(texto) {
+        var match = texto.match(/TOTAL:\s*R\$\s*([\d.,]+)/);
+        if (match) {
+            return match[1];
+        } else {
+            console.error("Formato não encontrado no texto.");
+            return null;
         }
     }
 </script>
@@ -357,7 +380,7 @@ $totalProdutos = 0; ?>
                 </button>
             </div>
             <div class="modal-body">
-                <p id="mensagemConfirmacao">Tem certeza de que deseja aprovar esta Ordem de Serviço?</p>
+                <p id="mensagemConfirmacao">Tem certeza de que deseja aprovar esta ordem de Serviço?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -368,4 +391,3 @@ $totalProdutos = 0; ?>
 </div>
 
 <!-- Fim do Modal de Confirmação -->
-

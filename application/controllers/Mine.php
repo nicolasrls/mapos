@@ -665,7 +665,7 @@ class Mine extends CI_Controller
 
         if ($statusAtualizado) {
             $this->session->set_flashdata('success', 'Ordem de serviço aprovada com sucesso!');
-            log_info('Cliente aprovou o orçamento'. $this->input->post('idOs'));
+            log_info('Cliente aprovou a OS Nº' . $os->idOs);
         } else {
             $this->session->set_flashdata('error', 'Falha ao aprovar a ordem de serviço. Tente novamente.');
         }
