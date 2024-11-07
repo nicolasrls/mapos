@@ -204,12 +204,6 @@ footer .assinaturas span {
     margin-top: 55px;
 }
 
-footer .vendedor {
-    display: flex;
-    text-align: center;
-    justify-content: space-around;
-}
-
 #anexos {
     display: none;
     page-break-before: always;

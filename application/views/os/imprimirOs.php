@@ -1,6 +1,6 @@
 <?php
-    $totalServico  = 0;
-    $totalProdutos = 0;
+$totalServico  = 0;
+$totalProdutos = 0;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/imprimir.css">
 </head>
+
 <body>
     <div class="main-page">
         <div class="sub-page">
             <header>
                 <?php if ($emitente == null) : ?>
                     <div class="alert alert-danger" role="alert">
-                        Você precisa configurar os dados do emitente. >>> <a href="<?=base_url()?>index.php/mapos/emitente">Configurar</a>
+                        Você precisa configurar os dados do emitente. >>> <a href="<?= base_url() ?>index.php/mapos/emitente">Configurar</a>
                     </div>
                 <?php else : ?>
                     <div class="imgLogo" class="align-middle">
@@ -26,12 +27,12 @@
                     </div>
                     <div class="emitente">
                         <span style="font-size: 16px;"><b><?= $emitente->nome ?></b></span></br>
-                        <?php if($emitente->cnpj != "00.000.000/0000-00") : ?>
+                        <?php if ($emitente->cnpj != "00.000.000/0000-00") : ?>
                             <span class="align-middle">CNPJ: <?= $emitente->cnpj ?></span></br>
                         <?php endif; ?>
                         <span class="align-middle">
-                            <?= $emitente->rua.', '.$emitente->numero.', '.$emitente->bairro ?><br>
-                            <?= $emitente->cidade.' - '.$emitente->uf.' - '.$emitente->cep ?>
+                            <?= $emitente->rua . ', ' . $emitente->numero . ', ' . $emitente->bairro ?><br>
+                            <?= $emitente->cidade . ' - ' . $emitente->uf . ' - ' . $emitente->cep ?>
                         </span>
                     </div>
                     <div class="contatoEmitente">
@@ -86,12 +87,12 @@
                     <div>
                         <span><b><?= $result->nomeCliente ?></b></span><br />
                         <span>CPF/CNPJ: <?= $result->documento ?></span><br />
-                        <span><?= $result->contato_cliente.' '.$result->telefone ?><?= $result->telefone && $result->celular ? ' / '.$result->celular : $result->celular ?></span><br />
+                        <span><?= $result->contato_cliente . ' ' . $result->telefone ?><?= $result->telefone && $result->celular ? ' / ' . $result->celular : $result->celular ?></span><br />
                         <span><?= $result->email ?></span><br />
                     </div>
                     <div style="text-align: right;">
-                        <span><?= $result->rua.', '.$result->numero.', '.$result->bairro ?></span><br />
-                        <span><?= $result->complemento.' - '.$result->cidade.' - '.$result->estado ?></span><br />
+                        <span><?= $result->rua . ', ' . $result->numero . ', ' . $result->bairro ?></span><br />
+                        <span><?= $result->complemento . ' - ' . $result->cidade . ' - ' . $result->estado ?></span><br />
                         <span>CEP: <?= $result->cep ?></span><br />
                     </div>
                 </div>
@@ -140,7 +141,7 @@
                                     <th>PRODUTO(S)</th>
                                     <th class="text-center" width="10%">QTD</th>
                                     <th class="text-center" width="10%">UNT</th>
-                                    <th class="text-end" width="15%" >SUBTOTAL</th>
+                                    <th class="text-end" width="15%">SUBTOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,7 +162,7 @@
                         </table>
                     </div>
                 <?php endif; ?>
-                
+
                 <?php if ($servicos) : ?>
                     <div class="tabela">
                         <table class="table table-bordered">
@@ -170,23 +171,23 @@
                                     <th>SERVIÇO(S)</th>
                                     <th class="text-center" width="10%">QTD</th>
                                     <th class="text-center" width="10%">UNT</th>
-                                    <th class="text-end" width="15%" >SUBTOTAL</th>
+                                    <th class="text-end" width="15%">SUBTOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                                    setlocale(LC_MONETARY, 'en_US'); 
-                                    foreach ($servicos as $s) :
-                                        $preco = $s->preco ?: $s->precoVenda;
-                                        $subtotal = $preco * ($s->quantidade ?: 1);
-                                        $totalServico = $totalServico + $subtotal;
-                                        echo '<tr>';
-                                        echo '  <td>' . $s->nome . '</td>';
-                                        echo '  <td class="text-center">' . ($s->quantidade ?: 1) . '</td>';
-                                        echo '  <td class="text-center">' . number_format($preco, 2, ',', '.') . '</td>';
-                                        echo '  <td class="text-end">R$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
-                                        echo '</tr>';
-                                    endforeach; ?>
+                                <?php
+                                setlocale(LC_MONETARY, 'en_US');
+                                foreach ($servicos as $s) :
+                                    $preco = $s->preco ?: $s->precoVenda;
+                                    $subtotal = $preco * ($s->quantidade ?: 1);
+                                    $totalServico = $totalServico + $subtotal;
+                                    echo '<tr>';
+                                    echo '  <td>' . $s->nome . '</td>';
+                                    echo '  <td class="text-center">' . ($s->quantidade ?: 1) . '</td>';
+                                    echo '  <td class="text-center">' . number_format($preco, 2, ',', '.') . '</td>';
+                                    echo '  <td class="text-end">R$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
+                                    echo '</tr>';
+                                endforeach; ?>
                                 <tr>
                                     <td colspan="3" class="text-end"><b>TOTAL SERVIÇOS:</b></td>
                                     <td class="text-end"><b>R$ <?= number_format($totalServico, 2, ',', '.') ?></b></td>
@@ -215,29 +216,43 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="table-secondary">
-                                            <th colspan="2">RESUMO DOS VALORES</th>
+                                            <th colspan="2">Formas de Pagamento</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($result->valor_desconto != 0) : ?>
+                                        <?php
+                                        $subtotal = $totalProdutos + $totalServico; //Valor bruto dos produtos
+                                        $totalFinal = $result->valor_desconto != 0 ? $result->valor_desconto : $subtotal; //Valor final com desconto
+                                        $dif = $subtotal-$totalFinal; //Diferença do desconto
+
+                                        if ($result->valor_desconto != 0) : ?>
                                             <tr>
                                                 <td width="65%">SUBTOTAL</td>
-                                                <td>R$ <b><?= number_format($totalProdutos + $totalServico, 2, ',', '.') ?></b></td>
+                                                <td>R$ <b><?= number_format($subtotal, 2, ',', '.') ?></b></td>
                                             </tr>
                                             <tr>
-                                                <td>DESCONTO</td>
-                                                <td>R$ <b><?= number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') ?></b></td>
-                                            </tr>
-                                            <tr>
-                                                <td>TOTAL</td>
-                                                <td>R$ <?= number_format($result->valor_desconto, 2, ',', '.') ?></td>
-                                            </tr>
-                                        <?php else : ?>
-                                            <tr>
-                                                <td style="width:290px">TOTAL</td>
-                                                <td>R$ <?= number_format($totalProdutos + $totalServico, 2, ',', '.') ?></td>
+                                                <td width="65%">DESCONTO</td>
+                                                <td>R$ <b><?= number_format($dif, 2, ',', '.') ?></b></td>
                                             </tr>
                                         <?php endif; ?>
+
+                                        <!-- Exibir parcelamento de 1 a 12 vezes sem juros -->
+                                        <tr>
+                                            <td colspan="2"><b>Parcelamento(Master/Visa):</b></td>
+                                        </tr>
+                                        <?php for ($i = 1; $i <= 12; $i++) :
+                                            $valorParcela = $subtotal / $i; ?>
+                                            <tr>
+                                                <td colspan="2" style="text-align:right;"><?= $i ?>x de R$ <?= number_format($valorParcela, 2, ',', '.') ?> sem juros</td>
+                                            </tr>
+                                        <?php endfor; ?>
+
+                                        <!-- Exibir desconto para pagamento à vista via Pix -->
+                                        <tr>
+                                            <td colspan="2" style="color: green; text-align:right;">
+                                                <b>Em espécie ou Pix com desconto: R$ <?= number_format($result->valor_desconto, 2, ',', '.') ?></b>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -263,7 +278,7 @@
                 <header>
                     <?php if ($emitente == null) : ?>
                         <div class="alert alert-danger" role="alert">
-                            Você precisa configurar os dados do emitente. >>> <a href="<?=base_url()?>index.php/mapos/emitente">Configurar</a>
+                            Você precisa configurar os dados do emitente. >>> <a href="<?= base_url() ?>index.php/mapos/emitente">Configurar</a>
                         </div>
                     <?php else : ?>
                         <div class="imgLogo" class="align-middle">
@@ -271,12 +286,12 @@
                         </div>
                         <div class="emitente">
                             <span style="font-size: 16px;"><b><?= $emitente->nome ?></b></span></br>
-                            <?php if($emitente->cnpj != "00.000.000/0000-00") : ?>
+                            <?php if ($emitente->cnpj != "00.000.000/0000-00") : ?>
                                 <span class="align-middle">CNPJ: <?= $emitente->cnpj ?></span></br>
                             <?php endif; ?>
                             <span class="align-middle">
-                                <?= $emitente->rua.', '.$emitente->numero.', '.$emitente->bairro ?><br>
-                                <?= $emitente->cidade.' - '.$emitente->uf.' - '.$emitente->cep ?>
+                                <?= $emitente->rua . ', ' . $emitente->numero . ', ' . $emitente->bairro ?><br>
+                                <?= $emitente->cidade . ' - ' . $emitente->uf . ' - ' . $emitente->cep ?>
                             </span>
                         </div>
                         <div class="contatoEmitente">
@@ -289,7 +304,8 @@
                 <section>
                     <div class="title">
                         <!-- VIA EMPRESA  -->
-                        <?php $totalServico = 0; $totalProdutos = 0; ?>
+                        <?php $totalServico = 0;
+                        $totalProdutos = 0; ?>
                         <?php if ($configuration['control_2vias']) : ?><span class="via">Via Empresa</span><?php endif; ?>
                         ORDEM DE SERVIÇO #<?= str_pad($result->idOs, 4, 0, STR_PAD_LEFT) ?>
                         <span class="emissao">Emissão: <?= date('d/m/Y') ?></span>
@@ -333,12 +349,12 @@
                         <div>
                             <span><b><?= $result->nomeCliente ?></b></span><br />
                             <span>CPF/CNPJ: <?= $result->documento ?></span><br />
-                            <span><?= $result->contato_cliente.' '.$result->telefone ?><?= $result->telefone && $result->celular ? ' / '.$result->celular : $result->celular ?></span><br />
+                            <span><?= $result->contato_cliente . ' ' . $result->telefone ?><?= $result->telefone && $result->celular ? ' / ' . $result->celular : $result->celular ?></span><br />
                             <span><?= $result->email ?></span><br />
                         </div>
                         <div style="text-align: right;">
-                            <span><?= $result->rua.', '.$result->numero.', '.$result->bairro ?></span><br />
-                            <span><?= $result->complemento.' - '.$result->cidade.' - '.$result->estado ?></span><br />
+                            <span><?= $result->rua . ', ' . $result->numero . ', ' . $result->bairro ?></span><br />
+                            <span><?= $result->complemento . ' - ' . $result->cidade . ' - ' . $result->estado ?></span><br />
                             <span>CEP: <?= $result->cep ?></span><br />
                         </div>
                     </div>
@@ -387,7 +403,7 @@
                                         <th>PRODUTO(S)</th>
                                         <th class="text-center" width="10%">QTD</th>
                                         <th class="text-center" width="10%">UNT</th>
-                                        <th class="text-end" width="15%" >SUBTOTAL</th>
+                                        <th class="text-end" width="15%">SUBTOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -408,7 +424,7 @@
                             </table>
                         </div>
                     <?php endif; ?>
-                    
+
                     <?php if ($servicos) : ?>
                         <div class="tabela">
                             <table class="table table-bordered">
@@ -417,23 +433,23 @@
                                         <th>SERVIÇO(S)</th>
                                         <th class="text-center" width="10%">QTD</th>
                                         <th class="text-center" width="10%">UNT</th>
-                                        <th class="text-end" width="15%" >SUBTOTAL</th>
+                                        <th class="text-end" width="15%">SUBTOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                        setlocale(LC_MONETARY, 'en_US'); 
-                                        foreach ($servicos as $s) :
-                                            $preco = $s->preco ?: $s->precoVenda;
-                                            $subtotal = $preco * ($s->quantidade ?: 1);
-                                            $totalServico = $totalServico + $subtotal;
-                                            echo '<tr>';
-                                            echo '  <td>' . $s->nome . '</td>';
-                                            echo '  <td class="text-center">' . ($s->quantidade ?: 1) . '</td>';
-                                            echo '  <td class="text-center">' . number_format($preco, 2, ',', '.') . '</td>';
-                                            echo '  <td class="text-end">R$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
-                                            echo '</tr>';
-                                        endforeach; ?>
+                                    <?php
+                                    setlocale(LC_MONETARY, 'en_US');
+                                    foreach ($servicos as $s) :
+                                        $preco = $s->preco ?: $s->precoVenda;
+                                        $subtotal = $preco * ($s->quantidade ?: 1);
+                                        $totalServico = $totalServico + $subtotal;
+                                        echo '<tr>';
+                                        echo '  <td>' . $s->nome . '</td>';
+                                        echo '  <td class="text-center">' . ($s->quantidade ?: 1) . '</td>';
+                                        echo '  <td class="text-center">' . number_format($preco, 2, ',', '.') . '</td>';
+                                        echo '  <td class="text-end">R$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
+                                        echo '</tr>';
+                                    endforeach; ?>
                                     <tr>
                                         <td colspan="3" class="text-end"><b>TOTAL SERVIÇOS:</b></td>
                                         <td class="text-end"><b>R$ <?= number_format($totalServico, 2, ',', '.') ?></b></td>
@@ -523,8 +539,8 @@
                                 <span class="align-middle">CNPJ: <?= $emitente->cnpj ?></span></br>
                             <?php endif; ?>
                             <span class="align-middle">
-                                <?= $emitente->rua.', '.$emitente->numero.', '.$emitente->bairro ?><br>
-                                <?= $emitente->cidade.' - '.$emitente->uf.' - '.$emitente->cep ?>
+                                <?= $emitente->rua . ', ' . $emitente->numero . ', ' . $emitente->bairro ?><br>
+                                <?= $emitente->cidade . ' - ' . $emitente->uf . ' - ' . $emitente->cep ?>
                             </span>
                         </div>
                         <div style="text-align: right; max-width: 230px; margin-top: 10px;">
@@ -543,20 +559,20 @@
                     <div class="dados">
                         <div style="width: 100%; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
                             <?php
-                                $contaAnexos = 0;
-                                foreach ($anexos as $a) :
-                                    if ($a->thumb) :
-                                        $thumb = $a->url.'/thumbs/'.$a->thumb;
-                                        $link  = $a->url.'/'.$a->anexo;
+                            $contaAnexos = 0;
+                            foreach ($anexos as $a) :
+                                if ($a->thumb) :
+                                    $thumb = $a->url . '/thumbs/' . $a->thumb;
+                                    $link  = $a->url . '/' . $a->anexo;
                             ?>
-                                        <img src="<?= $link ?>" alt="">
+                                    <img src="<?= $link ?>" alt="">
                             <?php
-                                    endif;
-                                endforeach;
+                                endif;
+                            endforeach;
                             ?>
                         </div>
                     </div>
-                <section>
+                    <section>
             </div>
         <?php endif; ?>
     </div>
@@ -564,4 +580,5 @@
         window.print();
     </script>
 </body>
+
 </html>

@@ -15,11 +15,21 @@
                 <span class="icon"><i class="fas fa-diagnoses"></i></span>
                 <h5>Editar Ordem de Serviço</h5>
                 <div class="buttons">
+                    <!-- <?php if ($result->faturado == 0) { ?>
+                        <a href="#modal-faturar" id="btn-faturar" role="button" data-toggle="modal" class="button btn btn-mini btn-danger">
+                            <span class="button__icon"><i class='bx bx-dollar'></i></span> <span class="button__text">Faturar</span>
+                        </a>
+                    <?php } ?> -->
+                    <!-- teste -->
                     <?php if ($result->faturado == 0) { ?>
                         <a href="#modal-faturar" id="btn-faturar" role="button" data-toggle="modal" class="button btn btn-mini btn-danger">
                             <span class="button__icon"><i class='bx bx-dollar'></i></span> <span class="button__text">Faturar</span>
                         </a>
+                        <a href="#modalReceitaParcelada" id="btn-faturamento-parcelado" role="button" data-toggle="modal" class="button btn btn-mini btn-warning">
+                            <span class="button__icon"><i class='bx bx-calendar'></i></span> <span class="button__text">Faturamento Parcelado</span>
+                        </a>
                     <?php } ?>
+                    <!--  -->
                     <a title="Visualizar OS" class="button btn btn-primary" href="<?php echo site_url() ?>/os/visualizar/<?php echo $result->idOs; ?>">
                         <span class="button__icon"><i class="bx bx-show"></i></span><span class="button__text">Visualizar OS</span>
                     </a>
@@ -90,15 +100,33 @@
                                         <div class="span3">
                                             <label for="status">Status<span class="required">*</span></label>
                                             <select class="span12" name="status" id="status" value="">
-                                                <option <?php if ($result->status == 'Aberto') { echo 'selected'; } ?> value="Aberto">Aberto</option>
-                                                <option <?php if ($result->status == 'Orçamento') { echo 'selected'; } ?> value="Orçamento">Orçamento</option>
-                                                <option <?php if ($result->status == 'Negociação') { echo 'selected'; } ?> value="Negociação">Negociação</option>
-                                                <option <?php if ($result->status == 'Aprovado') { echo 'selected'; } ?> value="Aprovado">Aprovado</option>
-                                                <option <?php if ($result->status == 'Aguardando Peças') { echo 'selected'; } ?> value="Aguardando Peças">Aguardando Peças</option>
-                                                <option <?php if ($result->status == 'Em Andamento') { echo 'selected'; } ?> value="Em Andamento">Em Andamento</option>
-                                                <option <?php if ($result->status == 'Finalizado') { echo 'selected'; } ?> value="Finalizado">Finalizado</option>
-                                                <option <?php if ($result->status == 'Faturado') { echo 'selected'; } ?> value="Faturado">Faturado</option>
-                                                <option <?php if ($result->status == 'Cancelado') { echo 'selected'; } ?> value="Cancelado">Cancelado</option>                                                          
+                                                <option <?php if ($result->status == 'Orçamento') {
+                                                            echo 'selected';
+                                                        } ?> value="Orçamento">Orçamento</option>
+                                                <option <?php if ($result->status == 'Aberto') {
+                                                            echo 'selected';
+                                                        } ?> value="Aberto">Aberto</option>
+                                                <option <?php if ($result->status == 'Faturado') {
+                                                            echo 'selected';
+                                                        } ?> value="Faturado">Faturado</option>
+                                                <option <?php if ($result->status == 'Negociação') {
+                                                            echo 'selected';
+                                                        } ?> value="Negociação">Negociação</option>
+                                                <option <?php if ($result->status == 'Em Andamento') {
+                                                            echo 'selected';
+                                                        } ?> value="Em Andamento">Em Andamento</option>
+                                                <option <?php if ($result->status == 'Finalizado') {
+                                                            echo 'selected';
+                                                        } ?> value="Finalizado">Finalizado</option>
+                                                <option <?php if ($result->status == 'Cancelado') {
+                                                            echo 'selected';
+                                                        } ?> value="Cancelado">Cancelado</option>
+                                                <option <?php if ($result->status == 'Aguardando Peças') {
+                                                            echo 'selected';
+                                                        } ?> value="Aguardando Peças">Aguardando Peças</option>
+                                                <option <?php if ($result->status == 'Aprovado') {
+                                                            echo 'selected';
+                                                        } ?> value="Aprovado">Aprovado</option>
                                             </select>
                                         </div>
                                         <div class="span3">
@@ -119,19 +147,27 @@
                                         </div>
                                     </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
-                                        <label for="descricaoProduto"><h4>Descrição Produto/Serviço</h4></label>
+                                        <label for="descricaoProduto">
+                                            <h4>Descrição Produto/Serviço</h4>
+                                        </label>
                                         <textarea class="span12 editor" name="descricaoProduto" id="descricaoProduto" cols="30" rows="5"><?php echo $result->descricaoProduto ?></textarea>
                                     </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
-                                        <label for="defeito"><h4>Defeito</h4></label>
+                                        <label for="defeito">
+                                            <h4>Defeito</h4>
+                                        </label>
                                         <textarea class="span12 editor" name="defeito" id="defeito" cols="30" rows="5"><?php echo $result->defeito ?></textarea>
                                     </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
-                                        <label for="observacoes"><h4>Observações</h4></label>
+                                        <label for="observacoes">
+                                            <h4>Observações</h4>
+                                        </label>
                                         <textarea class="span12 editor" name="observacoes" id="observacoes" cols="30" rows="5"><?php echo $result->observacoes ?></textarea>
                                     </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">
-                                        <label for="laudoTecnico"><h4>Laudo Técnico</h4></label>
+                                        <label for="laudoTecnico">
+                                            <h4>Laudo Técnico</h4>
+                                        </label>
                                         <textarea class="span12 editor" name="laudoTecnico" id="laudoTecnico" cols="30" rows="5"><?php echo $result->laudoTecnico ?></textarea>
                                     </div>
                                     <div class="span12" style="padding: 0; margin-left: 0">
@@ -145,8 +181,16 @@
                         </div>
 
                         <!--Desconto-->
-                        <?php $total = 0; foreach ($produtos as $p) {$total = $total + $p->subTotal;}?>
-                        <?php $totals = 0; foreach ($servicos as $s) { $preco = $s->preco ?: $s->precoVenda; $subtotals = $preco * ($s->quantidade ?: 1); $totals = $totals + $subtotals;}?>
+                        <?php $total = 0;
+                        foreach ($produtos as $p) {
+                            $total = $total + $p->subTotal;
+                        } ?>
+                        <?php $totals = 0;
+                        foreach ($servicos as $s) {
+                            $preco = $s->preco ?: $s->precoVenda;
+                            $subtotals = $preco * ($s->quantidade ?: 1);
+                            $totals = $totals + $subtotals;
+                        } ?>
                         <div class="tab-pane" id="tab2">
                             <div class="span12 well" style="padding: 1%; margin-left: 0">
                                 <form id="formDesconto" action="<?php echo base_url(); ?>index.php/os/adicionarDesconto" method="POST">
@@ -169,7 +213,7 @@
                                             value="<?php echo $result->idOs; ?>" />
                                         <label for="">Desconto</label>
                                         <input style="width: 4em;" id="desconto" name="desconto" type="text"
-                                            placeholder="" maxlength="6" size="2" value="<?= $result->desconto ?>" />
+                                            placeholder="5.00" maxlength="6" size="2" value="<?= $result->desconto ?>" />
                                         <strong><span style="color: red" id="errorAlert"></span></strong>
                                     </div>
                                     <div class="span2">
@@ -534,7 +578,7 @@
                         <select name="formaPgto" id="formaPgto" class="span12">
                             <option value="Dinheiro">Dinheiro</option>
                             <option value="Cartão de Crédito">Cartão de Crédito</option>
-                            <option value="Cartão de Débito">Cartão de Débito</option>
+                            <option value="Débito">Débito</option>
                             <option value="Boleto">Boleto</option>
                             <option value="Depósito">Depósito</option>
                             <option value="Pix">Pix</option>
@@ -553,6 +597,69 @@
         </div>
     </form>
 </div>
+
+<div id="modalReceitaParcelada" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form id="formReceita_parc" action="<?php echo base_url() ?>index.php/financeiro/adicionarReceita_parc" method="post">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Adicionar Receita Parcelada</h3>
+        </div>
+        <div class="modal-body">
+            <div class="span12 alert alert-info" style="margin-left: 0">Obrigatório o preenchimento dos campos com asterisco.</div>
+
+            <!-- Descrição da Fatura (Autopreenchida) -->
+            <div class="span12" style="margin-left: 0">
+                <label for="descricao_parc">Descrição*</label>
+                <input class="span12" id="descricao_parc" type="text" name="descricao_parc"
+                    value="Fatura da OS Nº: <?php echo $result->idOs; ?>" readonly />
+                <input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url(); ?>" />
+            </div>
+
+            <!-- Cliente (Autopreenchido) -->
+            <div class="span6" style="margin-left: 0">
+                <label for="cliente_parc">Cliente*</label>
+                <input class="span11" id="cliente_parc" type="text" name="cliente_parc" value="<?php echo $result->nomeCliente; ?>" readonly />
+                <input class="span11" id="idCliente_parc" type="hidden" name="idCliente_parc" value="<?php echo $result->clientes_id; ?>" />
+            </div>
+
+            <!-- Valor (Autopreenchido) -->
+            <div class="span6" style="margin-left: 0">
+                <label for="valor_parc">Valor*</label>
+                <input class="span12 money" id="valor_parc" type="text" name="valor_parc"
+                    value="<?php echo number_format($totals + $total, 2, '.', ''); ?>" readonly />
+            </div>
+
+            <!-- Quantidade de Parcelas -->
+            <div class="span3" style="margin-left: 0">
+                <label for="qtdparcelas_parc">Parcelas*</label>
+                <select name="qtdparcelas_parc" id="qtdparcelas_parc" class="span12">
+                    <option value="1">1x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                    <!-- Continue até o número máximo de parcelas permitido -->
+                </select>
+            </div>
+
+            <!-- Data de Entrada -->
+            <div class="span4" style="margin-left: 0">
+                <label for="dia_pgto">Data da Entrada*</label>
+                <input class="span12 datepicker" id="dia_pgto" type="text" name="dia_pgto" value="<?php echo date('d/m/Y'); ?>" autocomplete="off" required />
+            </div>
+
+            <!-- Data Base de Pagamento -->
+            <div class="span4" style="margin-left: 1">
+                <label for="dia_base_pgto">Data Base de Pgto*</label>
+                <input class="span12 datepicker" id="dia_base_pgto" type="text" name="dia_base_pgto" autocomplete="off" required />
+            </div>
+        </div>
+
+        <div class="modal-footer" style="display:flex;justify-content: center">
+            <button class="button btn btn-warning" data-dismiss="modal" aria-hidden="true"><span class="button__icon"><i class="bx bx-x"></i></span><span class="button__text2">Cancelar</span></button>
+            <button class="button btn btn-success" id="submitReceita"><span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Adicionar Registro</span></button>
+        </div>
+    </form>
+</div>
+
 
 <script src="<?php echo base_url(); ?>assets/js/maskmoney.js"></script>
 
@@ -577,20 +684,20 @@
     }
     var valorBackup = $("#valorTotal").val();
 
-    $("#quantidade").keyup(function () {
+    $("#quantidade").keyup(function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
     });
 
-    $("#quantidade_servico").keyup(function () {
+    $("#quantidade_servico").keyup(function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
     });
-    $('#tipoDesconto').on('change', function () {
+    $('#tipoDesconto').on('change', function() {
         if (Number($("#desconto").val()) >= 0) {
             $('#resultado').val(calcDesconto(Number($("#valorTotal").val()), Number($("#desconto").val()), $("#tipoDesconto").val()));
             $('#resultado').val(validarDesconto(Number($('#resultado').val()), Number($("#valorTotal").val())));
         }
     });
-    $("#desconto").keyup(function () {
+    $("#desconto").keyup(function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
         if ($("#valorTotal").val() == null || $("#valorTotal").val() == '') {
             $('#errorAlert').text('Valor não pode ser apagado.').css("display", "inline").fadeOut(5000);
@@ -609,7 +716,7 @@
         }
     });
 
-    $("#valorTotal").focusout(function () {
+    $("#valorTotal").focusout(function() {
         $("#valorTotal").val(valorBackup);
         if ($("#valorTotal").val() == '0.00' && $('#resultado').val() != '') {
             $('#errorAlert').text('Você não pode apagar o valor.').css("display", "inline").fadeOut(6000);
@@ -624,7 +731,7 @@
         }
     });
 
-    $('#resultado').focusout(function () {
+    $('#resultado').focusout(function() {
         if (Number($('#resultado').val()) > Number($("#valorTotal").val())) {
             $('#errorAlert').text('Desconto não pode ser maior que o Valor.').css("display", "inline").fadeOut(6000);
             $('#resultado').val('');
@@ -634,11 +741,11 @@
             $('#resultado').val(validarDesconto(Number($('#resultado').val()), Number($("#valorTotal").val())));
         }
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         $(".money").maskMoney();
 
-        $('#recebido').click(function (event) {
+        $('#recebido').click(function(event) {
             var flag = $(this).is(':checked');
             if (flag == true) {
                 $('#divRecebimento').show();
@@ -677,7 +784,7 @@
                     required: 'Campo Requerido.'
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 var dados = $(form).serialize();
                 var qtdProdutos = $('#tblProdutos >tbody >tr').length;
                 var qtdServicos = $('#tblServicos >tbody >tr').length;
@@ -697,7 +804,7 @@
                         url: "<?php echo base_url(); ?>index.php/os/faturar",
                         data: dados,
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
                             if (data.result == true) {
                                 window.location.reload(true);
                             } else {
@@ -715,14 +822,14 @@
                 }
             }
         });
-        $('#formDesconto').submit(function (e) {
+        $('#formDesconto').submit(function(e) {
             e.preventDefault();
             var form = $(this);
             $.ajax({
                 url: form.attr('action'),
                 type: form.attr('method'),
                 data: form.serialize(),
-                beforeSend: function () {
+                beforeSend: function() {
                     Swal.fire({
                         title: 'Processando',
                         text: 'Registrando desconto...',
@@ -733,14 +840,14 @@
                         allowEscapeKey: false
                     });
                 },
-                success: function (response) {
+                success: function(response) {
                     if (response.result) {
                         Swal.fire({
                             type: "success",
                             title: "Sucesso",
                             text: response.messages
                         });
-                        setTimeout(function () {
+                        setTimeout(function() {
                             window.location.href = window.BaseUrl + 'index.php/os/editar/' + <?php echo $result->idOs ?>;
                         }, 2000);
                     } else {
@@ -752,7 +859,7 @@
                     }
 
                 },
-                error: function (response) {
+                error: function(response) {
                     Swal.fire({
                         type: "error",
                         title: "Atenção",
@@ -792,7 +899,7 @@
                     required: 'Campo Requerido.'
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 var dados = $(form).serialize();
                 $('#btn-cancelar-faturar').trigger('click');
                 $.ajax({
@@ -800,7 +907,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/faturar",
                     data: dados,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
 
                             window.location.reload(true);
@@ -822,7 +929,7 @@
         $("#produto").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteProduto",
             minLength: 2,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 $("#codDeBarra").val(ui.item.codbar);
                 $("#idProduto").val(ui.item.id);
                 $("#estoque").val(ui.item.estoque);
@@ -834,7 +941,7 @@
         $("#servico").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteServico",
             minLength: 2,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 $("#idServico").val(ui.item.id);
                 $("#preco_servico").val(ui.item.preco);
                 $("#quantidade_servico").focus();
@@ -845,7 +952,7 @@
         $("#cliente").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteCliente",
             minLength: 2,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 $("#clientes_id").val(ui.item.id);
             }
         });
@@ -853,7 +960,7 @@
         $("#tecnico").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteUsuario",
             minLength: 2,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 $("#usuarios_id").val(ui.item.id);
             }
         });
@@ -861,14 +968,14 @@
         $("#termoGarantia").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteTermoGarantia",
             minLength: 1,
-            select: function (event, ui) {
+            select: function(event, ui) {
                 if (ui.item.id) {
                     $("#garantias_id").val(ui.item.id);
                 }
             }
         });
 
-        $('#termoGarantia').on('change', function () {
+        $('#termoGarantia').on('change', function() {
             if (!$(this).val() && $("#garantias_id").val()) {
                 $("#garantias_id").val('');
                 Swal.fire({
@@ -904,10 +1011,10 @@
             },
             errorClass: "help-inline",
             errorElement: "span",
-            highlight: function (element, errorClass, validClass) {
+            highlight: function(element, errorClass, validClass) {
                 $(element).parents('.control-group').addClass('error');
             },
-            unhighlight: function (element, errorClass, validClass) {
+            unhighlight: function(element, errorClass, validClass) {
                 $(element).parents('.control-group').removeClass('error');
                 $(element).parents('.control-group').addClass('success');
             }
@@ -930,14 +1037,13 @@
                     required: 'Insira a quantidade'
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 var quantidade = parseInt($("#quantidade").val());
                 var estoque = parseInt($("#estoque").val());
 
                 <?php if (!$configuration['control_estoque']) {
                     echo 'estoque = 1000000';
-                }
-                ; ?>
+                }; ?>
 
                 if (estoque < quantidade) {
                     Swal.fire({
@@ -953,7 +1059,7 @@
                         url: "<?php echo base_url(); ?>index.php/os/adicionarProduto",
                         data: dados,
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
                             if (data.result == true) {
                                 $("#divProdutos").load("<?php echo current_url(); ?> #divProdutos");
                                 $("#quantidade").val('');
@@ -999,7 +1105,7 @@
                     required: 'Insira a quantidade'
                 },
             },
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 var dados = $(form).serialize();
 
                 $("#divServicos").html("<div class='progress progress-info progress-striped active'><div class='bar' style='width: 100%'></div></div>");
@@ -1008,7 +1114,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/adicionarServico",
                     data: dados,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divServicos").load("<?php echo current_url(); ?> #divServicos");
                             $("#quantidade_servico").val('');
@@ -1041,7 +1147,7 @@
                     required: 'Insira a anotação'
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 var dados = $(form).serialize();
                 $("#divFormAnotacoes").html("<div class='progress progress-info progress-striped active'><div class='bar' style='width: 100%'></div></div>");
 
@@ -1050,7 +1156,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/adicionarAnotacao",
                     data: dados,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divAnotacoes").load("<?php echo current_url(); ?> #divAnotacoes");
                             $("#anotacao").val('');
@@ -1070,7 +1176,7 @@
         });
 
         $("#formAnexos").validate({
-            submitHandler: function (form) {
+            submitHandler: function(form) {
                 //var dados = $( form ).serialize();
                 var dados = new FormData(form);
                 $("#form-anexos").hide('1000');
@@ -1084,7 +1190,7 @@
                     cache: false,
                     processData: false,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divAnexos").load("<?php echo current_url(); ?> #divAnexos");
                             $("#userfile").val('');
@@ -1093,7 +1199,7 @@
                             $("#divAnexos").html('<div class="alert fade in"><button type="button" class="close" data-dismiss="alert">×</button><strong>Atenção!</strong> ' + data.mensagem + '</div>');
                         }
                     },
-                    error: function () {
+                    error: function() {
                         $("#divAnexos").html('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">×</button><strong>Atenção!</strong> Ocorreu um erro. Verifique se você anexou o(s) arquivo(s).</div>');
                     }
                 });
@@ -1102,7 +1208,7 @@
             }
         });
 
-        $(document).on('click', 'a', function (event) {
+        $(document).on('click', 'a', function(event) {
             var idProduto = $(this).attr('idAcao');
             var quantidade = $(this).attr('quantAcao');
             var produto = $(this).attr('prodAcao');
@@ -1114,7 +1220,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/excluirProduto",
                     data: "idProduto=" + idProduto + "&quantidade=" + quantidade + "&produto=" + produto + "&idOs=" + idOS,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divProdutos").load("<?php echo current_url(); ?> #divProdutos");
                             $("#divValorTotal").load("<?php echo current_url(); ?> #divValorTotal");
@@ -1135,7 +1241,7 @@
 
         });
 
-        $(document).on('click', '.servico', function (event) {
+        $(document).on('click', '.servico', function(event) {
             var idServico = $(this).attr('idAcao');
             var idOS = "<?php echo $result->idOs ?>"
             if ((idServico % 1) == 0) {
@@ -1145,7 +1251,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/excluirServico",
                     data: "idServico=" + idServico + "&idOs=" + idOS,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divServicos").load("<?php echo current_url(); ?> #divServicos");
                             $("#divValorTotal").load("<?php echo current_url(); ?> #divValorTotal");
@@ -1165,7 +1271,7 @@
             }
         });
 
-        $(document).on('click', '.anexo', function (event) {
+        $(document).on('click', '.anexo', function(event) {
             event.preventDefault();
             var link = $(this).attr('link');
             var id = $(this).attr('imagem');
@@ -1177,7 +1283,7 @@
 
         });
 
-        $(document).on('click', '#excluir-anexo', function (event) {
+        $(document).on('click', '#excluir-anexo', function(event) {
             event.preventDefault();
             var link = $(this).attr('link');
             var idOS = "<?php echo $result->idOs ?>"
@@ -1189,7 +1295,7 @@
                 url: link,
                 dataType: 'json',
                 data: "idOs=" + idOS,
-                success: function (data) {
+                success: function(data) {
                     if (data.result == true) {
                         $("#divAnexos").load("<?php echo current_url(); ?> #divAnexos");
                     } else {
@@ -1203,7 +1309,7 @@
             });
         });
 
-        $(document).on('click', '.anotacao', function (event) {
+        $(document).on('click', '.anotacao', function(event) {
             var idAnotacao = $(this).attr('idAcao');
             var idOS = "<?php echo $result->idOs ?>"
             if ((idAnotacao % 1) == 0) {
@@ -1213,7 +1319,7 @@
                     url: "<?php echo base_url(); ?>index.php/os/excluirAnotacao",
                     data: "idAnotacao=" + idAnotacao + "&idOs=" + idOS,
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         if (data.result == true) {
                             $("#divAnotacoes").load("<?php echo current_url(); ?> #divAnotacoes");
 
@@ -1236,7 +1342,9 @@
 
         $('.editor').trumbowyg({
             lang: 'pt_br',
-            semantic: { 'strikethrough': 's', }
+            semantic: {
+                'strikethrough': 's',
+            }
         });
     });
 </script>

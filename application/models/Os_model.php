@@ -372,4 +372,13 @@ class Os_model extends CI_Model
 
         return $pix->getQRCode();
     }
+
+
+    public function updateStatus($id, $status)
+    {
+        $this->db->where('idOs', $id);
+        return $this->db->update('os', array('status' => $status));
+    }
+    
+
 }

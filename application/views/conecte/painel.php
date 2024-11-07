@@ -56,7 +56,7 @@
                 <thead>
                     <tr>
                         <th>Nº</th>
-                        <th>Responsável</th>
+                        <th>Cliente</th>
                         <th>Data Inicial</th>
                         <th>Data Final</th>
                         <th>Venc. da Garantia</th>
