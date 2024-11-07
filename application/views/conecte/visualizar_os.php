@@ -11,57 +11,13 @@ $totalProdutos = 0; ?>
                 <div class="buttons" style=" padding-left:5px;">
                     <a target="_blank" title="Imprimir Relatório" class="button btn btn-mini btn-inverse" href="<?php echo site_url() ?>/mine/imprimirOs/<?php echo $result->idOs; ?>">
                         <span class="button__icon"><i class="bx bx-printer"></i></span> <span class="button__text">Imprimir Relatório</span></a>
-                    <!-- <a target="" title="Aprovar orçamento" class="button btn btn-mini btn-success" href="<?php echo site_url() ?>/mine/aprovarOs/<?php echo $result->idOs; ?>">
-                        <span class="button__icon"><i class="bx bx-dollar-circle"></i></span>
-                        <span class="button__text">Aprovar Orçamento</span>
-                    </a> -->
                     <?php if ($result->status === 'Orçamento'): ?>
-                        <a target="" title="Aprovar orçamento" class="button btn btn-mini btn-success" href="<?php echo site_url() ?>/mine/aprovarOs/<?php echo $result->idOs; ?>">
+                        <a title="Aprovar orçamento" class="button btn btn-mini btn-success" onclick="abrirModal(<?php echo $result->idOs; ?>)">
                             <span class="button__icon"><i class="bx bx-dollar"></i></span>
                             <span class="button__text">Aprovar Orçamento</span>
                         </a>
-                        <!-- <a title="Aprovar orçamento" class="button btn btn-mini btn-success" onclick="abrirModal(<?php echo $result->idOs; ?>)">
-                            <span class="button__icon"><i class="bx bx-dollar"></i></span>
-                            <span class="button__text">Aprovar Orçamento</span>
-                        </a> -->
-                        <!-- Modal de Confirmação -->
-                        <!-- <div id="modalConfirmacao" class="modal" style="display: none;">
-                            <div class="modal-content">
-                                <span class="close" onclick="fecharModal()">&times;</span>
-                                <h2>Confirmação</h2>
-                                <p>Tem certeza de que deseja aprovar o orçamento?</p>
-                                <button class="btn btn-success" id="confirmarAprovacao">Confirmar</button>
-                                <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
-                            </div>
-                        </div> -->
-                        <!-- <script type="text/javascript">
-                            function abrirModal(idOs) {
-                                var modal = document.getElementById('modalConfirmacao');
-                                if (modal) {
-                                    modal.style.display = 'block';
-                                    document.getElementById('confirmarAprovacao').onclick = function() {
-                                        window.location.href = `<?php echo site_url('mine/aprovarOs/'); ?>` + idOs;
-                                    };
-                                } else {
-                                    console.error("Modal de confirmação não encontrado na página.");
-                                }
-                            }
-
-                            function fecharModal() {
-                                var modal = document.getElementById('modalConfirmacao');
-                                if (modal) {
-                                    modal.style.display = 'none';
-                                } else {
-                                    console.error("Modal de confirmação não encontrado na página.");
-                                }
-                            }
-                        </script> -->
                     <?php else: ?>
                         <!-- Botão desabilitado ou nenhuma ação -->
-                        <!-- <a class="button btn btn-mini btn-secondary" title="Aprovação disponível apenas para Orçamentos" style="pointer-events: none; opacity: 0.6;">
-                            <span class="button__icon"><i class="bx bx-dollar"></i></span>
-                            <span class="button__text">Aprovar Orçamento</span>
-                        </a> -->
                     <?php endif; ?>
                 </div>
             </div>
@@ -274,7 +230,7 @@ $totalProdutos = 0; ?>
                                             echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'>DESCONTO: R$ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
                                             echo "<h4 style='text-align: right'>TOTAL: R$ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>";
                                         } else {
-                                            echo "<h4 style='text-align: right'>TOTAL: R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
+                                            echo "<h4 id='total' style='text-align: right'>TOTAL: R$ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                         }
                                     } ?>
                                 </td>
@@ -367,3 +323,49 @@ $totalProdutos = 0; ?>
         }
     });
 </script>
+
+<script>
+    function abrirModal(idOs) {
+        // Atualiza a mensagem do modal com os dados da OS
+        var totall = document.getElementById("total").textContent;
+        document.getElementById('mensagemConfirmacao').innerText = 
+            `Tem certeza de que deseja aprovar a Ordem de Serviço ${idOs} com o valor ${totall}?`;
+        // Abre o modal de confirmação
+        $('#modalConfirmacao').modal('show');
+        document.getElementById('confirmarAprovacao').onclick = function() {
+                window.location.href = `<?php echo site_url('mine/aprovarOs/'); ?>` + idOs;
+            };
+    }
+    function fecharModal() {
+        var modal = document.getElementById('modalConfirmacao');
+        if (modal) {
+            modal.style.display = 'none';
+        } else {
+            console.error("Modal de confirmação não encontrado na página.");
+        }
+    }
+</script>
+
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="modalConfirmacao" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConfirmacaoLabel">Confirmação de Aprovação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="mensagemConfirmacao">Tem certeza de que deseja aprovar esta Ordem de Serviço?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarAprovacao">Confirmar Aprovação</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fim do Modal de Confirmação -->
+
