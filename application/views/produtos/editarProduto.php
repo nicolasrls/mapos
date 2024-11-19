@@ -68,8 +68,8 @@
                     <div class="control-group">
                         <label for="precoCompra" class="control-label">Preço de Compra<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="precoCompra" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="precoCompra" value="<?php echo $result->precoCompra; ?>" />
-                            Margem <input style="width: 3em;" id="margemLucro" name="margemLucro" type="text" placeholder="%" maxlength="3" size="2" />
+                            <!-- Feito correção do campo de margem, onde agora é posível adicionar até 4 casas decimais. By: NR Tec-->
+                            <input style="width: 9em;" id="precoCompra" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="precoCompra" value="<?php echo $result->precoCompra; ?>" />Margem<input style="width: 3em;" id="margemLucro" name="margemLucro" type="text" placeholder="%" maxlength="5" size="3" aria-label="Margem de Lucro (%)" />
                             <strong><span style="color: red" id="errorAlert"></span><strong>
                         </div>
                     </div>
@@ -106,9 +106,9 @@
                         <div class="span12">
                             <div class="span6 offset3" style="display: flex;justify-content: center">
                                 <button type="submit" class="button btn btn-primary" style="max-width: 160px">
-                                  <span class="button__icon"><i class="bx bx-sync"></i></span><span class="button__text2">Atualizar</span></button>
+                                    <span class="button__icon"><i class="bx bx-sync"></i></span><span class="button__text2">Atualizar</span></button>
                                 <a href="<?php echo base_url() ?>index.php/produtos" id="" class="button btn btn-mini btn-warning">
-                                  <span class="button__icon"><i class="bx bx-undo"></i></span><span class="button__text2">Voltar</span></a>
+                                    <span class="button__icon"><i class="bx bx-undo"></i></span><span class="button__text2">Voltar</span></a>
                             </div>
                         </div>
                     </div>
@@ -125,12 +125,60 @@
 <script src="<?php echo base_url() ?>assets/js/jquery.validate.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/maskmoney.js"></script>
 <script type="text/javascript">
-    function calcLucro(precoCompra, margemLucro) {
-    var precoVenda = (precoCompra / (100 - margemLucro)*100).toFixed(2);
-    return precoVenda;
 
-}
-    $("#precoCompra").focusout(function () {
+// Feita a correção da fórmula que calcula o lucro baseado na margem inserida e também a forma reversa, onde é possivel definir o valor de venda e a margem ser calculada automaticamente.
+
+    function calcLucro(precoCompra, margemLucro) {
+        // Garantir que os parâmetros sejam números válidos
+        const compra = parseFloat(precoCompra.toString().replace(',', '.').replace(/[^\d.]/g, ''));
+        const margem = parseFloat(margemLucro.toString().replace(',', '.').replace(/[^\d.]/g, ''));
+
+        // Validar entradas
+        if (isNaN(compra) || compra <= 0) {
+            throw new Error('Preço de compra deve ser um número maior que zero.');
+        }
+
+        if (isNaN(margem) || margem < 0) {
+            throw new Error('Margem de lucro deve ser um número maior ou igual a zero.');
+        }
+
+        // Calcular o preço de venda
+        const precoVenda = (compra * (1 + margem / 100)).toFixed(2);
+
+        return precoVenda; // Retorna como string formatada para moeda
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        calcularMargem();
+    });
+    document.getElementById('precoVenda').addEventListener('blur', calcularMargem);
+    function calcularMargem() {
+        const precoVendaInput = document.getElementById('precoVenda');
+        const precoCompraInput = document.getElementById('precoCompra');
+        const margemInput = document.getElementById('margemLucro');
+        const errorAlert = document.getElementById('errorAlert');
+
+        // Converter os valores para números
+        const precoVenda = parseFloat(precoVendaInput.value.replace(',', '.')) || 0;
+        const precoCompra = parseFloat(precoCompraInput.value.replace(',', '.')) || 0;
+
+        // Validar se o preço de compra é maior que zero
+        if (precoCompra > 0) {
+            // Calcular a margem de lucro
+            const margem = ((precoVenda - precoCompra) / precoCompra) * 100;
+
+            // Exibir o resultado no campo de margem (arredondado a 2 casas decimais)
+            margemInput.value = margem.toFixed(2);
+            errorAlert.textContent = ''; // Limpar mensagem de erro
+        } else {
+            // Exibir erro se o preço de compra for inválido
+            errorAlert.textContent = 'O preço de compra deve ser maior que zero para calcular a margem.';
+            margemInput.value = ''; // Limpar valor da margem
+        }
+    }
+
+    // Modificado acima por Nícolas Ribeiro
+
+    $("#precoCompra").focusout(function() {
         if ($("#precoCompra").val() == '0.00' && $('#precoVenda').val() != '') {
             $('#errorAlert').text('Você não pode preencher valor de compra e depois apagar.').css("display", "inline").fadeOut(6000);
             $('#precoVenda').val('');
@@ -140,7 +188,7 @@
         }
     });
 
-   $("#margemLucro").keyup(function () {
+    $("#margemLucro").keyup(function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
         if ($("#precoCompra").val() == null || $("#precoCompra").val() == '') {
             $('#errorAlert').text('Preencher valor da compra primeiro.').css("display", "inline").fadeOut(5000);
@@ -157,11 +205,11 @@
         }
     });
 
-    $('#precoVenda').focusout(function () {
+    $('#precoVenda').focusout(function() {
         if (Number($('#precoVenda').val()) < Number($("#precoCompra").val())) {
             $('#errorAlert').text('Preço de venda não pode ser menor que o preço de compra.').css("display", "inline").fadeOut(6000);
             $('#precoVenda').val('');
-            if($("#margemLucro").val() != "" || $("#margemLucro").val() != null){
+            if ($("#margemLucro").val() != "" || $("#margemLucro").val() != null) {
                 $('#precoVenda').val(calcLucro(Number($("#precoCompra").val()), Number($("#margemLucro").val())));
             }
         }
