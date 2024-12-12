@@ -31,3 +31,7 @@ $route['api/v1/os/(:num)/anotacoes/(:num)'] = 'api/v1/OsController/anotacoes/$1/
 $route['api/v1/os/(:num)/anexos'] = 'api/v1/OsController/anexos/$1';
 $route['api/v1/os/(:num)/anexos/(:num)'] = 'api/v1/OsController/anexos/$1/$2';
 $route['api/v1/os/(:num)/desconto'] = 'api/v1/OsController/desconto/$1';
+$route['api/v1/equipamentos'] = 'api/v1/EquipamentosController/index'; // Listar todos os equipamentos
+$route['api/v1/equipamentos/adicionar'] = 'api/v1/EquipamentosController/adicionar'; // Adicionar um equipamento
+$route['api/v1/equipamentos/(:num)/editar'] = 'api/v1/EquipamentosController/editar/$1'; // Editar um equipamento pelo ID
+$route['api/v1/equipamentos/(:num)/excluir'] = 'api/v1/EquipamentosController/excluir/$1'; // Excluir um equipamento pelo ID

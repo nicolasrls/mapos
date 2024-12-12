@@ -156,4 +156,10 @@ class Clientes_model extends CI_Model
 
         return true;
     }
+
+    public function get_all_clients()
+    {
+        $query = $this->db->get('clientes');
+        return $query->result(); // Retorna um array de objetos com os dados dos clientes
+    }
 }

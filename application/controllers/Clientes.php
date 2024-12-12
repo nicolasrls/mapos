@@ -32,9 +32,9 @@ class Clientes extends MY_Controller
 
         $this->data['configuration']['base_url'] = site_url('clientes/gerenciar/');
         $this->data['configuration']['total_rows'] = $this->clientes_model->count('clientes');
-        if($pesquisa) {
+        if ($pesquisa) {
             $this->data['configuration']['suffix'] = "?pesquisa={$pesquisa}";
-            $this->data['configuration']['first_url'] = base_url("index.php/clientes")."\?pesquisa={$pesquisa}";
+            $this->data['configuration']['first_url'] = base_url("index.php/clientes") . "\?pesquisa={$pesquisa}";
         }
 
         $this->pagination->initialize($this->data['configuration']);
@@ -226,5 +226,19 @@ class Clientes extends MY_Controller
 
         $this->session->set_flashdata('success', 'Cliente excluido com sucesso!');
         redirect(site_url('clientes/gerenciar/'));
+    }
+
+    public function getNomeCliente()
+    {
+        $idCliente = $this->input->get('id');  // Obtém o idCliente enviado via query string
+        // Chama o método getById do modelo clientes_model
+        $cliente = $this->clientes_model->getById($idCliente);
+        if ($cliente) {
+            // Se o cliente for encontrado, retorna o nomeCliente em formato JSON
+            echo $cliente->nomeCliente;
+        } else {
+            // Caso o cliente não seja encontrado
+            echo json_encode(['nomeCliente' => null]);
+        }
     }
 }

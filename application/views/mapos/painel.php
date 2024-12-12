@@ -98,9 +98,9 @@
                 </a>
             </div>
             <a href="<?= site_url('vendas/') ?>">
-            <div class="lord-icon05">
-                <i class='bx bx-cart-alt iconBx05'></i></span>
-            </div>
+                <div class="lord-icon05">
+                    <i class='bx bx-cart-alt iconBx05'></i></span>
+                </div>
             </a>
         </li>
     <?php endif ?>
@@ -114,9 +114,9 @@
                 </a>
             </div>
             <a href="<?= site_url('financeiro/lancamentos') ?>">
-            <div class="lord-icon06">
-                <i class="bx bx-bar-chart-alt-2 iconBx06"></i>
-            </div>
+                <div class="lord-icon06">
+                    <i class="bx bx-bar-chart-alt-2 iconBx06"></i>
+                </div>
             </a>
         </li>
     <?php endif ?>
@@ -274,216 +274,216 @@
             </div>
         <?php endif ?>
 
-<script type="text/javascript">
-    if (window.outerWidth > 2000) {
-        Chart.defaults.font.size = 15;
-    };
-    if (window.outerWidth < 2000 && window.outerWidth > 1367) {
-        Chart.defaults.font.size = 11;
-    };
-    if (window.outerWidth < 1367 && window.outerWidth > 480) {
-        Chart.defaults.font.size = 9.5;
-    };
-    if (window.outerWidth < 480) {
-        Chart.defaults.font.size = 8.5;
-    };
+        <script type="text/javascript">
+            if (window.outerWidth > 2000) {
+                Chart.defaults.font.size = 15;
+            };
+            if (window.outerWidth < 2000 && window.outerWidth > 1367) {
+                Chart.defaults.font.size = 11;
+            };
+            if (window.outerWidth < 1367 && window.outerWidth > 480) {
+                Chart.defaults.font.size = 9.5;
+            };
+            if (window.outerWidth < 480) {
+                Chart.defaults.font.size = 8.5;
+            };
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var StatusOS = document.getElementById('statusOS').getContext('2d');
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var StatusOS = document.getElementById('statusOS').getContext('2d');
 
-    var myChart = new Chart(ctx, {
-        data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            datasets: [{
-                    label: 'Receita Líquida',
-                    data: [<?php echo($financeiro_mes->VALOR_JAN_REC - $financeiro_mes->VALOR_JAN_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_FEV_REC - $financeiro_mes->VALOR_FEV_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAR_REC - $financeiro_mes->VALOR_MAR_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_ABR_REC - $financeiro_mes->VALOR_ABR_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAI_REC - $financeiro_mes->VALOR_MAI_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUN_REC - $financeiro_mes->VALOR_JUN_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUL_REC - $financeiro_mes->VALOR_JUL_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_AGO_REC - $financeiro_mes->VALOR_AGO_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_SET_REC - $financeiro_mes->VALOR_SET_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_OUT_REC - $financeiro_mes->VALOR_OUT_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_NOV_REC - $financeiro_mes->VALOR_NOV_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_DEZ_REC - $financeiro_mes->VALOR_DEZ_DES); ?>
-                    ],
+            var myChart = new Chart(ctx, {
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    datasets: [{
+                            label: 'Receita Líquida',
+                            data: [<?php echo ($financeiro_mes->VALOR_JAN_REC - $financeiro_mes->VALOR_JAN_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_FEV_REC - $financeiro_mes->VALOR_FEV_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAR_REC - $financeiro_mes->VALOR_MAR_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_ABR_REC - $financeiro_mes->VALOR_ABR_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAI_REC - $financeiro_mes->VALOR_MAI_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUN_REC - $financeiro_mes->VALOR_JUN_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUL_REC - $financeiro_mes->VALOR_JUL_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_AGO_REC - $financeiro_mes->VALOR_AGO_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_SET_REC - $financeiro_mes->VALOR_SET_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_OUT_REC - $financeiro_mes->VALOR_OUT_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_NOV_REC - $financeiro_mes->VALOR_NOV_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_DEZ_REC - $financeiro_mes->VALOR_DEZ_DES); ?>
+                            ],
 
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderRadius: 15,
-                },
+                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                            borderRadius: 15,
+                        },
 
-                {
-                    label: 'Receita Bruta',
-                    data: [<?php echo($financeiro_mes->VALOR_JAN_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_FEV_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAR_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_ABR_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAI_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUN_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUL_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_AGO_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_SET_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_OUT_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_NOV_REC); ?>,
-                        <?php echo($financeiro_mes->VALOR_DEZ_REC); ?>
-                    ],
+                        {
+                            label: 'Receita Bruta',
+                            data: [<?php echo ($financeiro_mes->VALOR_JAN_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_FEV_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAR_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_ABR_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAI_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUN_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUL_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_AGO_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_SET_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_OUT_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_NOV_REC); ?>,
+                                <?php echo ($financeiro_mes->VALOR_DEZ_REC); ?>
+                            ],
 
-                    backgroundColor: 'rgba(255, 206, 86, 0.5)',
-                    borderRadius: 15,
-                },
+                            backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                            borderRadius: 15,
+                        },
 
-                {
-                    label: 'Despesas',
-                    data: [<?php echo($financeiro_mes->VALOR_JAN_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_FEV_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAR_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_ABR_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_MAI_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUN_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_JUL_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_AGO_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_SET_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_OUT_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_NOV_DES); ?>,
-                        <?php echo($financeiro_mes->VALOR_DEZ_DES); ?>
-                    ],
+                        {
+                            label: 'Despesas',
+                            data: [<?php echo ($financeiro_mes->VALOR_JAN_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_FEV_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAR_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_ABR_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_MAI_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUN_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_JUL_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_AGO_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_SET_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_OUT_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_NOV_DES); ?>,
+                                <?php echo ($financeiro_mes->VALOR_DEZ_DES); ?>
+                            ],
 
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    borderRadius: 15,
-                },
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderRadius: 15,
+                        },
 
-                {
-                    label: 'Inadimplência',
-                    data: [<?php echo($financeiro_mesinadipl->VALOR_JAN_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_FEV_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_MAR_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_ABR_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_MAI_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_JUN_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_JUL_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_AGO_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_SET_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_OUT_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_NOV_REC); ?>,
-                        <?php echo($financeiro_mesinadipl->VALOR_DEZ_REC); ?>
-                    ],
+                        {
+                            label: 'Inadimplência',
+                            data: [<?php echo ($financeiro_mesinadipl->VALOR_JAN_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_FEV_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_MAR_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_ABR_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_MAI_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_JUN_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_JUL_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_AGO_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_SET_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_OUT_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_NOV_REC); ?>,
+                                <?php echo ($financeiro_mesinadipl->VALOR_DEZ_REC); ?>
+                            ],
 
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderRadius: 15,
-                }
-            ]
-
-        },
-        // configuração
-        type: 'bar',
-        options: {
-            locale: 'pt-BR',
-            scales: {
-                y: {
-                    ticks: {
-                        callback: (value, index, values) => {
-                            return new Intl.NumberFormat('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                                maximumSignificantDidits: 1
-                            }).format(value);
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderRadius: 15,
                         }
-                    }
+                    ]
+
                 },
-                x: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Meses'
-                    }
-                }
-            },
-
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        beforeTitle: function(context) {
-                            return 'Referente ao mês de';
-                        }
-                    }
-                },
-
-                legend: {
-                    position: "bottom",
-                    labels: {
-                        usePointStyle: true,
-                    }
-                }
-            }
-        }
-    });
-
-    var myChart = new Chart(statusOS, {
-        data: {
-            labels: [
-                'Receita total', 'Receita pendente',
-                'Previsto em caixa', 'Despesa total',
-                'Despesa pendente', 'Previsto a entrar'
-            ],
-            datasets: [{
-                label: 'Total',
-                data: [
-                    <?php echo ($estatisticas_financeiro->total_receita != null) ?  $estatisticas_financeiro->total_receita : '0.00'; ?>,
-                    <?php echo ($estatisticas_financeiro->total_receita_pendente != null) ?  $estatisticas_financeiro->total_receita_pendente : '0.00'; ?>,
-                    <?php echo($estatisticas_financeiro->total_receita - $estatisticas_financeiro->total_despesa); ?>,
-                    <?php echo ($estatisticas_financeiro->total_despesa != null) ?  $estatisticas_financeiro->total_despesa : '0.00'; ?>,
-                    <?php echo ($estatisticas_financeiro->total_despesa_pendente != null) ?  $estatisticas_financeiro->total_despesa_pendente : '0.00'; ?>,
-                    <?php echo($estatisticas_financeiro->total_receita_pendente - $estatisticas_financeiro->total_despesa_pendente); ?>
-                ],
-
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 159, 64, 0.5)',
-                    'rgba(153, 102, 255, 0.5)'
-                ],
-                borderWidth: 1
-            }]
-        },
-
-        // configuração
-        type: 'polarArea',
-        options: {
-            locale: 'pt-BR',
-            scales: {
-                r: {
-                    ticks: {
-                        callback: (value, index, values) => {
-                            return new Intl.NumberFormat('pt-BR', {
-                                style: 'currency',
-                                currency: 'BRL',
-                                maximumSignificantDidits: 1
-                            }).format(value);
+                // configuração
+                type: 'bar',
+                options: {
+                    locale: 'pt-BR',
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: (value, index, values) => {
+                                    return new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL',
+                                        maximumSignificantDidits: 1
+                                    }).format(value);
+                                }
+                            }
+                        },
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Meses'
+                            }
                         }
                     },
-                    beginAtZero: true,
-                }
-            },
-            plugins: {
-                legend: {
-                    position: "bottom",
-                    labels: {
-                        usePointStyle: true,
 
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                beforeTitle: function(context) {
+                                    return 'Referente ao mês de';
+                                }
+                            }
+                        },
+
+                        legend: {
+                            position: "bottom",
+                            labels: {
+                                usePointStyle: true,
+                            }
+                        }
                     }
                 }
-            }
-        }
-    });
+            });
 
-    function responsiveFonts() {
-        myChart.update();
-    }
-</script>
+            var myChart = new Chart(statusOS, {
+                data: {
+                    labels: [
+                        'Receita total', 'Receita pendente',
+                        'Previsto em caixa', 'Despesa total',
+                        'Despesa pendente', 'Previsto a entrar'
+                    ],
+                    datasets: [{
+                        label: 'Total',
+                        data: [
+                            <?php echo ($estatisticas_financeiro->total_receita != null) ?  $estatisticas_financeiro->total_receita : '0.00'; ?>,
+                            <?php echo ($estatisticas_financeiro->total_receita_pendente != null) ?  $estatisticas_financeiro->total_receita_pendente : '0.00'; ?>,
+                            <?php echo ($estatisticas_financeiro->total_receita - $estatisticas_financeiro->total_despesa); ?>,
+                            <?php echo ($estatisticas_financeiro->total_despesa != null) ?  $estatisticas_financeiro->total_despesa : '0.00'; ?>,
+                            <?php echo ($estatisticas_financeiro->total_despesa_pendente != null) ?  $estatisticas_financeiro->total_despesa_pendente : '0.00'; ?>,
+                            <?php echo ($estatisticas_financeiro->total_receita_pendente - $estatisticas_financeiro->total_despesa_pendente); ?>
+                        ],
+
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(153, 102, 255, 0.5)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+
+                // configuração
+                type: 'polarArea',
+                options: {
+                    locale: 'pt-BR',
+                    scales: {
+                        r: {
+                            ticks: {
+                                callback: (value, index, values) => {
+                                    return new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL',
+                                        maximumSignificantDidits: 1
+                                    }).format(value);
+                                }
+                            },
+                            beginAtZero: true,
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                            labels: {
+                                usePointStyle: true,
+
+                            }
+                        }
+                    }
+                }
+            });
+
+            function responsiveFonts() {
+                myChart.update();
+            }
+        </script>
 <?php  }
 } ?>
 </div>
@@ -510,39 +510,39 @@
                     <?php if ($ordens_orcamentos != null) : ?>
                         <?php foreach ($ordens_orcamentos as $o) : ?>
                             <?php
-                                    switch ($o->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            switch ($o->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $o->idOs ?>
@@ -553,10 +553,10 @@
                                 </td>
 
                                 <td><?php if ($o->dataFinal != null) {
-                                    echo date('d/m/Y', strtotime($o->dataFinal));
-                                } else {
-                                    echo "";
-                                } ?></td>
+                                        echo date('d/m/Y', strtotime($o->dataFinal));
+                                    } else {
+                                        echo "";
+                                    } ?></td>
 
                                 <td>
                                     <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
@@ -579,7 +579,7 @@
             </table>
         </div>
     </div>
-    
+
     <div class="widget-box0 widbox-blak">
         <div>
             <h5 class="cardHeader">Ordens de Serviços Em Aberto</h5>
@@ -599,39 +599,39 @@
                     <?php if ($ordens_abertas != null) : ?>
                         <?php foreach ($ordens_abertas as $o) : ?>
                             <?php
-                                    switch ($o->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            switch ($o->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $o->idOs ?>
@@ -642,11 +642,11 @@
                                 </td>
 
                                 <td><?php if ($o->dataFinal != null) {
-                                    echo date('d/m/Y', strtotime($o->dataFinal));
-                                } else {
-                                    echo "";
-                                } ?></td>
-                                
+                                        echo date('d/m/Y', strtotime($o->dataFinal));
+                                    } else {
+                                        echo "";
+                                    } ?></td>
+
                                 <td>
                                     <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
                                 </td>
@@ -689,39 +689,39 @@
                     <?php if ($ordens_aprovadas != null) : ?>
                         <?php foreach ($ordens_aprovadas as $o) : ?>
                             <?php
-                                    switch ($o->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            switch ($o->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $o->idOs ?>
@@ -732,11 +732,11 @@
                                 </td>
 
                                 <td><?php if ($o->dataFinal != null) {
-                                    echo date('d/m/Y', strtotime($o->dataFinal));
-                                } else {
-                                    echo "";
-                                } ?></td>
-                                
+                                        echo date('d/m/Y', strtotime($o->dataFinal));
+                                    } else {
+                                        echo "";
+                                    } ?></td>
+
                                 <td>
                                     <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
                                 </td>
@@ -778,39 +778,39 @@
                     <?php if ($ordens_finalizadas != null) : ?>
                         <?php foreach ($ordens_finalizadas as $o) : ?>
                             <?php
-                                    switch ($o->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            switch ($o->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $o->idOs ?>
@@ -821,11 +821,11 @@
                                 </td>
 
                                 <td><?php if ($o->dataFinal != null) {
-                                    echo date('d/m/Y', strtotime($o->dataFinal));
-                                } else {
-                                    echo "";
-                                } ?></td>
-                                
+                                        echo date('d/m/Y', strtotime($o->dataFinal));
+                                    } else {
+                                        echo "";
+                                    } ?></td>
+
                                 <td>
                                     <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
                                 </td>
@@ -866,40 +866,40 @@
                 <tbody>
                     <?php if ($ordens_status != null) : ?>
                         <?php foreach ($ordens_status as $o) : ?>
-                                <?php
-                                    switch ($o->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            <?php
+                            switch ($o->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $o->idOs ?>
@@ -909,14 +909,14 @@
                                 </td>
 
                                 <td><?php if ($o->dataFinal != null) {
-                                    echo date('d/m/Y', strtotime($o->dataFinal));
-                                } else {
-                                    echo "";
-                                } ?></td>
+                                        echo date('d/m/Y', strtotime($o->dataFinal));
+                                    } else {
+                                        echo "";
+                                    } ?></td>
 
-                                    <td>
-                                        <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
-                                    </td>
+                                <td>
+                                    <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $o->status ?></span>
+                                </td>
                                 <td>
                                     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vOs')) : ?>
                                         <a href="<?= base_url() ?>index.php/os/visualizar/<?= $o->idOs ?>" class="btn-nwe tip-top" title="Visualizar">
@@ -954,39 +954,39 @@
                     <?php if ($vendasstatus != null) : ?>
                         <?php foreach ($vendasstatus as $v) : ?>
                             <?php
-                                    switch ($v->status) {
-                                        case 'Aberto':
-                                            $cor = '#00cd00';
-                                            break;
-                                        case 'Em Andamento':
-                                            $cor = '#436eee';
-                                            break;
-                                        case 'Orçamento':
-                                            $cor = '#CDB380';
-                                            break;
-                                        case 'Negociação':
-                                            $cor = '#AEB404';
-                                            break;
-                                        case 'Cancelado':
-                                            $cor = '#CD0000';
-                                            break;
-                                        case 'Finalizado':
-                                            $cor = '#256';
-                                            break;
-                                        case 'Faturado':
-                                            $cor = '#B266FF';
-                                            break;
-                                        case 'Aguardando Peças':
-                                            $cor = '#FF7F00';
-                                            break;
-                                        case 'Aprovado':
-                                            $cor = '#808080';
-                                            break;
-                                        default:
-                                            $cor = '#E0E4CC';
-                                            break;
-                                    }
-                                ?>
+                            switch ($v->status) {
+                                case 'Aberto':
+                                    $cor = '#00cd00';
+                                    break;
+                                case 'Em Andamento':
+                                    $cor = '#436eee';
+                                    break;
+                                case 'Orçamento':
+                                    $cor = '#CDB380';
+                                    break;
+                                case 'Negociação':
+                                    $cor = '#AEB404';
+                                    break;
+                                case 'Cancelado':
+                                    $cor = '#CD0000';
+                                    break;
+                                case 'Finalizado':
+                                    $cor = '#256';
+                                    break;
+                                case 'Faturado':
+                                    $cor = '#B266FF';
+                                    break;
+                                case 'Aguardando Peças':
+                                    $cor = '#FF7F00';
+                                    break;
+                                case 'Aprovado':
+                                    $cor = '#808080';
+                                    break;
+                                default:
+                                    $cor = '#E0E4CC';
+                                    break;
+                            }
+                            ?>
                             <tr>
                                 <td>
                                     <?= $v->idVendas ?>
@@ -998,15 +998,15 @@
                                 <td>
                                     <?= date('d/m/Y', strtotime($v->dataVenda)) ?>
                                 </td>
-                                
-                                    <td>
-                                        <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $v->status ?></span>
-                                    </td>
+
+                                <td>
+                                    <span class="badge" style="background-color: <?= $cor ?>; border-color: <?= $cor ?>;"><?= $v->status ?></span>
+                                </td>
                                 <td>
                                     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vVenda')) : ?>
                                         <a href="<?= base_url() ?>index.php/vendas/visualizar/<?= $v->idVendas ?>" class="btn-nwe tip-top" title="Visualizar">
                                             <i class="bx bx-show"></i> </a>
-                                   
+
                                     <?php endif ?>
                                 </td>
                             </tr>
@@ -1122,7 +1122,7 @@
             </div>
         </div>
     </div>
-                        
+
 </div>
 <!-- Fim Staus OS -->
 
@@ -1149,16 +1149,16 @@
     </div>
     <div class="modal-footer">
         <?php
-                                        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vOs')) {
-                                            echo '<a id="modalIdVisualizar" style="margin-right: 1%" href="" class="btn tip-top" title="Ver mais detalhes"><i class="fas fa-eye"></i></a>';
-                                        }
-                                        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eOs')) {
-                                            echo '<a id="modalIdEditar" style="margin-right: 1%" href="" class="btn btn-info tip-top" title="Editar OS"><i class="fas fa-edit"></i></a>';
-                                        }
-                                        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dOs')) {
-                                            echo '<a id="linkExcluir" href="#modal-excluir-os" role="button" data-toggle="modal" os="" class="btn btn-danger tip-top" title="Excluir OS"><i class="fas fa-trash-alt"></i></a>  ';
-                                        }
-?>
+        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vOs')) {
+            echo '<a id="modalIdVisualizar" style="margin-right: 1%" href="" class="btn tip-top" title="Ver mais detalhes"><i class="fas fa-eye"></i></a>';
+        }
+        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eOs')) {
+            echo '<a id="modalIdEditar" style="margin-right: 1%" href="" class="btn btn-info tip-top" title="Editar OS"><i class="fas fa-edit"></i></a>';
+        }
+        if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dOs')) {
+            echo '<a id="linkExcluir" href="#modal-excluir-os" role="button" data-toggle="modal" os="" class="btn btn-danger tip-top" title="Excluir OS"><i class="fas fa-trash-alt"></i></a>  ';
+        }
+        ?>
     </div>
 </div>
 

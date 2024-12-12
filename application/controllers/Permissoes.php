@@ -1,6 +1,6 @@
 <?php
 
-if (! defined('BASEPATH')) {
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
@@ -10,7 +10,7 @@ class Permissoes extends MY_Controller
     {
         parent::__construct();
 
-        if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'cPermissao')) {
+        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'cPermissao')) {
             $this->session->set_flashdata('error', 'Você não tem permissão para configurar as permissões no sistema.');
             redirect(base_url());
         }
@@ -34,7 +34,13 @@ class Permissoes extends MY_Controller
 
         $this->pagination->initialize($this->data['configuration']);
 
-        $this->data['results'] = $this->permissoes_model->get('permissoes', 'idPermissao,nome,data,situacao', '', $this->data['configuration']['per_page'], $this->uri->segment(3));
+        $this->data['results'] = $this->permissoes_model->get(
+            'permissoes',
+            'idPermissao,nome,data,situacao',
+            '',
+            $this->data['configuration']['per_page'],
+            $this->uri->segment(3)
+        );
 
         $this->data['view'] = 'permissoes/permissoes';
 
@@ -47,6 +53,7 @@ class Permissoes extends MY_Controller
         $this->data['custom_error'] = '';
 
         $this->form_validation->set_rules('nome', 'Nome', 'trim|required');
+
         if ($this->form_validation->run() == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
@@ -55,22 +62,31 @@ class Permissoes extends MY_Controller
             $situacao = 1;
 
             $permissoes = [
-
+                // Permissões de Clientes
                 'aCliente' => $this->input->post('aCliente'),
                 'eCliente' => $this->input->post('eCliente'),
                 'dCliente' => $this->input->post('dCliente'),
                 'vCliente' => $this->input->post('vCliente'),
 
+                // Permissões de Produtos
                 'aProduto' => $this->input->post('aProduto'),
                 'eProduto' => $this->input->post('eProduto'),
                 'dProduto' => $this->input->post('dProduto'),
                 'vProduto' => $this->input->post('vProduto'),
 
+                // Permissões de Equipamentos
+                'aEquipamento' => $this->input->post('aEquipamento'),
+                'eEquipamento' => $this->input->post('eEquipamento'),
+                'dEquipamento' => $this->input->post('dEquipamento'),
+                'vEquipamento' => $this->input->post('vEquipamento'),
+
+                // Permissões de Serviços
                 'aServico' => $this->input->post('aServico'),
                 'eServico' => $this->input->post('eServico'),
                 'dServico' => $this->input->post('dServico'),
                 'vServico' => $this->input->post('vServico'),
 
+                // Permissões de OS
                 'aOs' => $this->input->post('aOs'),
                 'eOs' => $this->input->post('eOs'),
                 'dOs' => $this->input->post('dOs'),
@@ -171,6 +187,12 @@ class Permissoes extends MY_Controller
                 'eServico' => $this->input->post('eServico'),
                 'dServico' => $this->input->post('dServico'),
                 'vServico' => $this->input->post('vServico'),
+
+                // Permissões de Equipamentos
+                'aEquipamento' => $this->input->post('aEquipamento'),
+                'eEquipamento' => $this->input->post('eEquipamento'),
+                'dEquipamento' => $this->input->post('dEquipamento'),
+                'vEquipamento' => $this->input->post('vEquipamento'),
 
                 'aOs' => $this->input->post('aOs'),
                 'eOs' => $this->input->post('eOs'),

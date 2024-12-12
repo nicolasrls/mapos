@@ -50,5 +50,13 @@ if (filter_var($_ENV['API_ENABLED'] ?? false, FILTER_VALIDATE_BOOLEAN)) {
     require APPPATH . 'config/routes_api.php';
 }
 
+$route['equipamentos'] = 'equipamentos/index';
+$route['equipamentos/adicionar'] = 'equipamentos/adicionar';
+$route['equipamentos/visualizar/(:num)'] = 'equipamentos/visualizar/$1';
+$route['equipamentos/editar/(:num)'] = 'equipamentos/editar/$1';
+$route['equipamentos/excluir/(:num)'] = 'equipamentos/excluir/$1';
+$route['clientes/getNomeCliente'] = 'clientes/getNomeCliente';
+
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
